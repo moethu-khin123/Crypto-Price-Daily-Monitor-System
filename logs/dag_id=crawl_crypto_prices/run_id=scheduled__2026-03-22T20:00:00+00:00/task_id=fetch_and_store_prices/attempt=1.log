@@ -1,0 +1,14 @@
+[2026-03-22T21:33:56.207+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: crawl_crypto_prices.fetch_and_store_prices scheduled__2026-03-22T20:00:00+00:00 [queued]>
+[2026-03-22T21:33:56.214+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: crawl_crypto_prices.fetch_and_store_prices scheduled__2026-03-22T20:00:00+00:00 [queued]>
+[2026-03-22T21:33:56.214+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 1
+[2026-03-22T21:33:56.226+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): fetch_and_store_prices> on 2026-03-22 20:00:00+00:00
+[2026-03-22T21:33:56.229+0000] {standard_task_runner.py:60} INFO - Started process 7911 to run task
+[2026-03-22T21:33:56.232+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'crawl_crypto_prices', 'fetch_and_store_prices', 'scheduled__2026-03-22T20:00:00+00:00', '--job-id', '91', '--raw', '--subdir', 'DAGS_FOLDER/crawl_crypto_prices.py', '--cfg-path', '/tmp/tmpezycbgde']
+[2026-03-22T21:33:56.234+0000] {standard_task_runner.py:88} INFO - Job 91: Subtask fetch_and_store_prices
+[2026-03-22T21:33:56.286+0000] {task_command.py:423} INFO - Running <TaskInstance: crawl_crypto_prices.fetch_and_store_prices scheduled__2026-03-22T20:00:00+00:00 [running]> on host eaa94a1f4a79
+[2026-03-22T21:33:56.359+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='crawl_crypto_prices' AIRFLOW_CTX_TASK_ID='fetch_and_store_prices' AIRFLOW_CTX_EXECUTION_DATE='2026-03-22T20:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-22T20:00:00+00:00'
+[2026-03-22T21:33:57.769+0000] {logging_mixin.py:188} INFO - [{'coin_id': 'bitcoin', 'price_usd': 67746, 'source_last_updated_at': datetime.datetime(2026, 3, 22, 21, 33, 52)}, {'coin_id': 'ethereum', 'price_usd': 2041.87, 'source_last_updated_at': datetime.datetime(2026, 3, 22, 21, 33, 54)}]
+[2026-03-22T21:33:57.771+0000] {python.py:201} INFO - Done. Returned value was: None
+[2026-03-22T21:33:57.783+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=crawl_crypto_prices, task_id=fetch_and_store_prices, execution_date=20260322T200000, start_date=20260322T213356, end_date=20260322T213357
+[2026-03-22T21:33:57.832+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-22T21:33:57.847+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

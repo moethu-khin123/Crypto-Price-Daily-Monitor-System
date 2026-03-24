@@ -1,0 +1,1 @@
+[2026-03-24T07:23:04.955+0000] {scheduler_job_runner.py:781} ERROR - Executor reports task instance <TaskInstance: crawl_crypto_prices.fetch_and_store_prices manual__2026-03-24T07:23:03.635174+00:00 [queued]> finished (failed) although the task says it's queued. (Info: None) Was the task killed externally?

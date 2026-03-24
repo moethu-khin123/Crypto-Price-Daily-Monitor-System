@@ -1,0 +1,82 @@
+[2026-03-19T04:04:23.471+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: crawl_crypto_prices.fetch_and_store_prices scheduled__2026-03-19T03:00:00+00:00 [queued]>
+[2026-03-19T04:04:23.481+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: crawl_crypto_prices.fetch_and_store_prices scheduled__2026-03-19T03:00:00+00:00 [queued]>
+[2026-03-19T04:04:23.481+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 1
+[2026-03-19T04:04:23.488+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): fetch_and_store_prices> on 2026-03-19 03:00:00+00:00
+[2026-03-19T04:04:23.491+0000] {standard_task_runner.py:60} INFO - Started process 246 to run task
+[2026-03-19T04:04:23.495+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'crawl_crypto_prices', 'fetch_and_store_prices', 'scheduled__2026-03-19T03:00:00+00:00', '--job-id', '36', '--raw', '--subdir', 'DAGS_FOLDER/crawl_crypto_prices.py', '--cfg-path', '/tmp/tmpyb3_bl_0']
+[2026-03-19T04:04:23.499+0000] {standard_task_runner.py:88} INFO - Job 36: Subtask fetch_and_store_prices
+[2026-03-19T04:04:23.561+0000] {task_command.py:423} INFO - Running <TaskInstance: crawl_crypto_prices.fetch_and_store_prices scheduled__2026-03-19T03:00:00+00:00 [running]> on host 386593a0ad14
+[2026-03-19T04:04:23.631+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='crawl_crypto_prices' AIRFLOW_CTX_TASK_ID='fetch_and_store_prices' AIRFLOW_CTX_EXECUTION_DATE='2026-03-19T03:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-19T03:00:00+00:00'
+[2026-03-19T04:04:33.093+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/urllib3/connectionpool.py", line 715, in urlopen
+    httplib_response = self._make_request(
+  File "/home/airflow/.local/lib/python3.8/site-packages/urllib3/connectionpool.py", line 404, in _make_request
+    self._validate_conn(conn)
+  File "/home/airflow/.local/lib/python3.8/site-packages/urllib3/connectionpool.py", line 1058, in _validate_conn
+    conn.connect()
+  File "/home/airflow/.local/lib/python3.8/site-packages/urllib3/connection.py", line 419, in connect
+    self.sock = ssl_wrap_socket(
+  File "/home/airflow/.local/lib/python3.8/site-packages/urllib3/util/ssl_.py", line 449, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(
+  File "/home/airflow/.local/lib/python3.8/site-packages/urllib3/util/ssl_.py", line 493, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+  File "/usr/local/lib/python3.8/ssl.py", line 500, in wrap_socket
+    return self.sslsocket_class._create(
+  File "/usr/local/lib/python3.8/ssl.py", line 1073, in _create
+    self.do_handshake()
+  File "/usr/local/lib/python3.8/ssl.py", line 1342, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLZeroReturnError: TLS/SSL connection has been closed (EOF) (_ssl.c:1131)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/requests/adapters.py", line 486, in send
+    resp = conn.urlopen(
+  File "/home/airflow/.local/lib/python3.8/site-packages/urllib3/connectionpool.py", line 799, in urlopen
+    retries = retries.increment(
+  File "/home/airflow/.local/lib/python3.8/site-packages/urllib3/util/retry.py", line 592, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='api.coingecko.com', port=443): Max retries exceeded with url: /api/v3/simple/price?ids=bitcoin%2Cethereum&vs_currencies=usd&include_last_updated_at=true (Caused by SSLError(SSLZeroReturnError(6, 'TLS/SSL connection has been closed (EOF) (_ssl.c:1131)')))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 199, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 216, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/crawl_crypto_prices.py", line 22, in fetch_and_store_crypto_prices
+    response = requests.get(url, params=params, timeout=30)
+  File "/home/airflow/.local/lib/python3.8/site-packages/requests/api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/requests/api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/requests/adapters.py", line 517, in send
+    raise SSLError(e, request=request)
+requests.exceptions.SSLError: HTTPSConnectionPool(host='api.coingecko.com', port=443): Max retries exceeded with url: /api/v3/simple/price?ids=bitcoin%2Cethereum&vs_currencies=usd&include_last_updated_at=true (Caused by SSLError(SSLZeroReturnError(6, 'TLS/SSL connection has been closed (EOF) (_ssl.c:1131)')))
+[2026-03-19T04:04:33.110+0000] {taskinstance.py:1138} INFO - Marking task as FAILED. dag_id=crawl_crypto_prices, task_id=fetch_and_store_prices, execution_date=20260319T030000, start_date=20260319T040423, end_date=20260319T040433
+[2026-03-19T04:04:33.118+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 36 for task fetch_and_store_prices (HTTPSConnectionPool(host='api.coingecko.com', port=443): Max retries exceeded with url: /api/v3/simple/price?ids=bitcoin%2Cethereum&vs_currencies=usd&include_last_updated_at=true (Caused by SSLError(SSLZeroReturnError(6, 'TLS/SSL connection has been closed (EOF) (_ssl.c:1131)'))); 246)
+[2026-03-19T04:04:33.131+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2026-03-19T04:04:33.143+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-19T04:09:02.543+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: crawl_crypto_prices.fetch_and_store_prices scheduled__2026-03-19T03:00:00+00:00 [queued]>
+[2026-03-19T04:09:02.545+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: crawl_crypto_prices.fetch_and_store_prices scheduled__2026-03-19T03:00:00+00:00 [queued]>
+[2026-03-19T04:09:02.546+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 1
+[2026-03-19T04:09:02.550+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): fetch_and_store_prices> on 2026-03-19 03:00:00+00:00
+[2026-03-19T04:09:02.551+0000] {standard_task_runner.py:60} INFO - Started process 210 to run task
+[2026-03-19T04:09:02.553+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'crawl_crypto_prices', 'fetch_and_store_prices', 'scheduled__2026-03-19T03:00:00+00:00', '--job-id', '2', '--raw', '--subdir', 'DAGS_FOLDER/crawl_crypto_prices.py', '--cfg-path', '/tmp/tmp6t01cwkf']
+[2026-03-19T04:09:02.554+0000] {standard_task_runner.py:88} INFO - Job 2: Subtask fetch_and_store_prices
+[2026-03-19T04:09:02.572+0000] {task_command.py:423} INFO - Running <TaskInstance: crawl_crypto_prices.fetch_and_store_prices scheduled__2026-03-19T03:00:00+00:00 [running]> on host eaa94a1f4a79
+[2026-03-19T04:09:02.600+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='crawl_crypto_prices' AIRFLOW_CTX_TASK_ID='fetch_and_store_prices' AIRFLOW_CTX_EXECUTION_DATE='2026-03-19T03:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-19T03:00:00+00:00'
+[2026-03-19T04:09:03.175+0000] {logging_mixin.py:188} INFO - [{'coin_id': 'bitcoin', 'price_usd': 70882, 'source_last_updated_at': datetime.datetime(2026, 3, 19, 4, 9, 2)}, {'coin_id': 'ethereum', 'price_usd': 2202.3, 'source_last_updated_at': datetime.datetime(2026, 3, 19, 4, 8, 51)}]
+[2026-03-19T04:09:03.177+0000] {python.py:201} INFO - Done. Returned value was: None
+[2026-03-19T04:09:03.186+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=crawl_crypto_prices, task_id=fetch_and_store_prices, execution_date=20260319T030000, start_date=20260319T040902, end_date=20260319T040903
+[2026-03-19T04:09:03.211+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-19T04:09:03.223+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

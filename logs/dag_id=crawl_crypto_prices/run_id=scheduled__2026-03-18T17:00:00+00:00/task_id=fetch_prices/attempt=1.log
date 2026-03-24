@@ -1,0 +1,14 @@
+[2026-03-18T18:11:59.532+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: crawl_crypto_prices.fetch_prices scheduled__2026-03-18T17:00:00+00:00 [queued]>
+[2026-03-18T18:11:59.535+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: crawl_crypto_prices.fetch_prices scheduled__2026-03-18T17:00:00+00:00 [queued]>
+[2026-03-18T18:11:59.535+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 1
+[2026-03-18T18:11:59.539+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): fetch_prices> on 2026-03-18 17:00:00+00:00
+[2026-03-18T18:11:59.541+0000] {standard_task_runner.py:60} INFO - Started process 4468 to run task
+[2026-03-18T18:11:59.542+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'crawl_crypto_prices', 'fetch_prices', 'scheduled__2026-03-18T17:00:00+00:00', '--job-id', '21', '--raw', '--subdir', 'DAGS_FOLDER/crawl_crypto_prices.py', '--cfg-path', '/tmp/tmpch7poci6']
+[2026-03-18T18:11:59.543+0000] {standard_task_runner.py:88} INFO - Job 21: Subtask fetch_prices
+[2026-03-18T18:11:59.566+0000] {task_command.py:423} INFO - Running <TaskInstance: crawl_crypto_prices.fetch_prices scheduled__2026-03-18T17:00:00+00:00 [running]> on host 316c4647ae80
+[2026-03-18T18:11:59.637+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='crawl_crypto_prices' AIRFLOW_CTX_TASK_ID='fetch_prices' AIRFLOW_CTX_EXECUTION_DATE='2026-03-18T17:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-18T17:00:00+00:00'
+[2026-03-18T18:12:00.223+0000] {logging_mixin.py:188} INFO - {'bitcoin': {'usd': 71870, 'last_updated_at': 1773857511}, 'ethereum': {'usd': 2214.87, 'last_updated_at': 1773857511}}
+[2026-03-18T18:12:00.225+0000] {python.py:201} INFO - Done. Returned value was: None
+[2026-03-18T18:12:00.239+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=crawl_crypto_prices, task_id=fetch_prices, execution_date=20260318T170000, start_date=20260318T181159, end_date=20260318T181200
+[2026-03-18T18:12:00.275+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-18T18:12:00.296+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
