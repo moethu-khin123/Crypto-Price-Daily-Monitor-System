@@ -19,12 +19,31 @@ This project is an automated data pipeline using Apache Airflow to:
 - Database storage
 - Telegram notification system
 
-## 🚀 How to Run
-1. Start Airflow:
-   docker-compose up
+## ⚙️ Setup Instructions
+1. Clone the repository
+git clone https://github.com/your-username/crypto-price-monitor.git
+cd crypto-price-monitor
+2. Install Docker
+Make sure Docker and Docker Compose are installed:
+docker --version
+docker-compose --version
+3. Install Python dependencies (optional for local testing)
+pip install -r requirements.txt
+4. Configure Environment
+Set Airflow Variables (via UI or CLI):
+telegram_bot_token
+telegram_chat_id
 
-2. Trigger DAG:
-   airflow dags trigger crawl_crypto_prices
+## 🚀 How to Run
+1. Start all services
+docker-compose up -d
+2. Open Airflow UI
+Go to:
+http://localhost:8080
+3. Enable DAGs
+Turn on:
+crawl_crypto_prices (hourly data collection)
+daily_crypto_report (daily report)
 
 ## 📩 Notification
 Telegram bot sends alert when pipeline runs successfully
